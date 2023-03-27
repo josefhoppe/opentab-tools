@@ -1,0 +1,11 @@
+Hallo {{name}},
+
+hier ist dein persönlicher Tab-Link:
+
+{{link}}
+
+Bitte behandle ihn vertraulich, verliere ihn nicht und sorge dafür, dass 
+du ihn während des Turniers immer bereit hast.
+
+Viele Grüße
+{{tabmaster_greeting}}

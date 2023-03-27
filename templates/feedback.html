@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/bootstrap.min.css">
+    <script src="./src/bootstrap.bundle.min.js"></script>
+    <script src="./src/jquery.min.js"></script>
+    <title>Feedback für {{name}}</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Feedback für {{name}}</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    {% for numeric in numerics %}
+                    <th>{{ numeric.title }}</th>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    {% for numeric in numerics %}
+                    <th style="color: grey;">{{ numeric.explanation }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                {% for numeric in numerics %}
+                <td>{{ numeric.mean }}</td>
+                {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+
+        {% for other in others %}
+        <h3>{{ other.title }}</h3>
+        <ul>
+        {% for text in other.contents %}
+            <li>{{ text }}</li>
+        {% endfor %}
+        </ul>
+        {% endfor %}
+    </div>
+
+</body>
+
+</html>
