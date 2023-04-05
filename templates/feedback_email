@@ -1,0 +1,8 @@
+Hallo {{name}},
+
+hier ist dein persönlicher Feedback-Link:
+
+{{link}}
+
+Viele Grüße und Danke für's Jurieren,
+{{tabmaster_greeting}}
