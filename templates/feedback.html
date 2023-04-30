@@ -33,7 +33,7 @@
             <tbody>
                 <tr>
                 {% for numeric in numerics %}
-                <td>{{ numeric.mean }}</td>
+                <td>{{ numeric.mean | round(2) }}</td>
                 {% endfor %}
                 </tr>
             </tbody>
