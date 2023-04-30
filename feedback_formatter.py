@@ -3,6 +3,8 @@ from jinja2 import Environment, FileSystemLoader
 
 import random, os
 
+import numpy as np
+
 def shuffled(l: list) -> list:
     random.shuffle(l)
     return l
@@ -23,9 +25,11 @@ def format_feedback(questions: List[dict], feedback: JudgeFeedback, jinja_env: E
         'mean': feedback.values[q['name']].mean()
     } for q in questions if q['type'] == 'discrete']
 
+    numerics = [ n for n in numerics if not np.isnan(n['mean']) ]
+
     others = [ {
         'title': q['description'],
-        'contents': shuffled(feedback.values[q['name']].to_list())
+        'contents': [ s for s in shuffled(feedback.values[q['name']].to_list()) if s != '' ]
     } for q in questions if q['type'] != 'discrete']
 
     template = jinja_env.get_template("feedback.html")
