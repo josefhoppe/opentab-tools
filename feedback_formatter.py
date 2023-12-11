@@ -28,7 +28,7 @@ def format_feedback_tc(judge: str, df_feedback: pd.DataFrame, jinja_env: Environ
 
     others = [ {
         'title': 'Feedback',
-        'contents': [ s for s in shuffled(df_feedback['answer'].to_list()) if s != '' ]
+        'contents': [ s for s in shuffled(df_feedback['answer'].dropna().to_list()) if s != '' ]
     } ]
 
     template = jinja_env.get_template("feedback.html")
@@ -63,10 +63,10 @@ def output_all_feedback(target_folder = 'feedback/'):
 def output_all_feedback_tabbycat(target_folder = 'feedback/'):
     environment = Environment(loader=FileSystemLoader("templates/"), autoescape=True)
     df_feedback = pd.read_csv('feedback.csv')
-    df_judges = pd.read_csv('tablinks.csv', index_col=0)
+    df_judges = pd.read_csv('tablinks_tc.csv', index_col=0, sep='\t')
     print(df_judges)
     os.makedirs(target_folder, exist_ok=True)
     for judge in df_feedback.to.unique():
         res = format_feedback_tc(judge, df_feedback[df_feedback.to == judge], environment)
-        with open(f'{target_folder}{df_judges.loc[judge]["url"]}.html', mode="w", encoding="utf-8") as fb_file:
+        with open(f'{target_folder}{df_judges.loc[judge]["url"].split("/")[-2]}.html', mode="w", encoding="utf-8") as fb_file:
             fb_file.write(res)

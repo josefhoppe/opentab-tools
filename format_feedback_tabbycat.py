@@ -1,0 +1,3 @@
+from feedback_formatter import output_all_feedback_tabbycat
+
+output_all_feedback_tabbycat()

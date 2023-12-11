@@ -12,3 +12,11 @@
 - `python get_top_team_categories.py` - custom report for Göttingen (Ehrung der top-Teamkategoriepunkte)
 
 Other files contain library functions for the aforementioned features.
+
+## Sending TabbyCat Feedback
+
+1. Check out `FeedbackProcessor.ipynb` to see how to export everything into a feedback.csv
+2. Go to the *private urls* page of tabbycat, copy all adjudicator urls, and paste them into `tablinks_tc.csv`
+2. Go to the *Emails* page of tabbycat, copy all email addresses, and paste them into `emails_tc.csv`
+3. run `python format_feedback_tabbycat.py`
+4. send emails as normal using `python send_feedback.py`
